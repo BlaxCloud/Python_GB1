@@ -18,13 +18,12 @@ class Matrix:
                 return f'Размеры матриц не совпадают'
 
 
-# mc_1 = Matrix(10, 20)
-# mc_2 = MyClass(30, 40)
-# print(mc_1 + mc_2)
-my_matrix1 = Matrix([[5, 18, 11], [6, 17, 23], [41, 50, 9]])
-my_matrix2 = Matrix([[11, 21, 41], [31, 41, 51], [51, 61, 61]])
-print(f'Первая матрица:\n{my_matrix1}\n')
 
+my_matrix1 = Matrix([[5, 18, 11], [6, 17, 23], [41, 50, 9]])
+
+my_matrix2 = Matrix([[11, 21, 41], [31, 41, 51], [51, 61, 61]])
+
+print(f'Первая матрица:\n{my_matrix1}\n')
 print(f'Вторая матрица:\n{my_matrix2}\n')
 
 matr_sum = my_matrix1 + my_matrix2
