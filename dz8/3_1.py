@@ -24,7 +24,7 @@ class NumberTake:
                 else:
                     raise NumberTakeExeption(ch)
 
-                   # print(str(f'На вход поступило отличное от цифры значение'))
+                   # print(str(1f'На вход поступило отличное от цифры значение'))
 
                 # raise NumberTake(ch)
                 # if ch == 'Q' or ch == 'q':
