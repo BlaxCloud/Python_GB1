@@ -18,8 +18,14 @@ class NumberTake:
                 self.NewList.append(ch)
                 print(f'Список на данный момент:{self.NewList}')
             else:
-                raise NumberTakeExeption(ch)
-                   # print(str(f'На вход поступило отличное от цифры значение'))
+                if ch == 'Q':
+                    print('Exit')
+                    exit()
+                else:
+                    raise NumberTakeExeption(ch)
+
+
+                   # print(str(1f'На вход поступило отличное от цифры значение'))
 
                 # raise NumberTake(ch)
                 # if ch == 'Q' or ch == 'q':
