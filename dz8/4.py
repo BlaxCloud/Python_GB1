@@ -1,96 +1,89 @@
-class Stock:
-  def __init__(self):
-    self._dict = {}
-
-  def add_to(self, Technique):
-    self._dict.setdefault(Technique.lable, []).append(Technique.model)
-
-  # def __init__(self, type, number, model):
-  #     self.type = type
-  #     self.number = number
-  #     self.model = model
-
-  # def __str__(self):
-  #     return f'На складе находится {self.type}ов {self.model} {self.number} шт'
-
-
-
 class Technique:
+    type: str
+    lable: str
     model: str
     price: int
-    lable: str
+    number: int
 
-
-
-    def __init__(self, model, price, lable):
-        self.lable = lable
-        self.price = price
+    def __init__(self, lable, model, price, type, number):
         self.model = model
+        self.price = price
+        self.lable = lable
+        self.type = type
+        self.number = number
 
     def __repr__(self):
-        return str(
-            f' {self.model} по цене {self.price}   на складе')
+        return str(f'Марка: {self.lable} Модель: {self.model} Цена: {self.price} Количество: {self.number} шт.')
+
+
+class ModelTypeException(Exception):
+    def __init__(self, type):
+        self.type = type
+
+    def __str__(self):
+        return f"Тип техники не может быть числовым. "
+
+
+class Stock:
+    # max_count: int
+    technique: dict
+
+    def __init__(self):
+        # self.max_count = count
+        self.technique = {}
+
+    def store(self, Technique):
+
+        if Technique.type.isdigit():
+            raise ModelTypeException(Technique.type)
+
+        self.technique.setdefault(Technique.type, []).append(Technique)
 
 
 class Printer(Technique):
     capasity: float
 
-    def __init__(self, lable, model, price, capasity):
-        super().__init__(model, price, lable)
+    def __init__(self, type, lable, model, price, number, capasity):
+        super().__init__(type, lable, model, price, number)
         self.capasity = capasity
         self.price = price
         self.lable = lable
         self.model = model
+        self.type = type
+        self.number = number
 
-
-    # def __str__(self):
-    #     return str(f'Принтера {self.model} модели {self.model} по цене {self.price} емкостью {self.capasity} на складе ')
 
 class Scanner(Technique):
     scan_speed: float
 
-    def __init__(self, lable, model, price, scan_speed):
-        super().__init__(model, price, lable)
+    def __init__(self, type, lable, model, price, number, scan_speed):
+        super().__init__(type, lable, model, number, price)
         self.scan_speed = scan_speed
         self.price = price
         self.lable = lable
         self.model = model
-
-
+        self.type = type
+        self.number = number
 
 
 class Xerox(Technique):
     Xerox_speed: float
 
-    def __init__(self,lable, model, price,  Xerox_speed):
-        super().__init__(model, price, lable)
+    def __init__(self, type, lable, model, price, number, Xerox_speed):
+        super().__init__(type, lable, model, number, price)
         self.Xerox_speed = Xerox_speed
         self.price = price
         self.lable = lable
         self.model = model
-
-
+        self.type = type
+        self.number = number
 
 
 Stock = Stock()
-printer = Printer('Hp', 'Z850', '123334', '400')
-scanner = Scanner('Hp', 'H033', '234455', '150')
-xerox = Xerox('Xerox', 'L033', '42343425', '50')
-Stock.add_to(scanner)
-Stock.add_to(xerox)
-Stock.add_to(xerox)
-
-
-
-# создаем объект и добавляем
-# scaner = Scaner('hp','321', 90)
-# sklad.add_to(scaner)
-# scaner = Scaner('hp','311', 97)
-# sklad.add_to(scaner)
-# scaner = Scaner('hp','330', 99)
-# sklad.add_to(scaner)
-#print(Printer.model)
-print(Stock._dict)
-
-
-
+printer = Printer('Принтер', 'Hp', 'Z850', '12333', '20', '400')
+scanner = Scanner('Сканер', 'Hp', 'H033', '23445', '25', '150')
+xerox = Xerox('Ксерокс', 'Xerox', 'L033', '42343', ' 30', '50')
+Stock.store(scanner)
+Stock.store(printer)
+Stock.store(xerox)
+print(Stock.technique)

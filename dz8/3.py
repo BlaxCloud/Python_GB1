@@ -1,4 +1,4 @@
-class NumberTakeExeption(Exception):
+class NumberTakeExeption:
     def __init__(self, number):
         self.number = number
 
@@ -22,23 +22,7 @@ class NumberTake:
                     print('Exit')
                     exit()
                 else:
-                    raise NumberTakeExeption(ch)
-
-
-                   # print(str(1f'На вход поступило отличное от цифры значение'))
-
-                # raise NumberTake(ch)
-                # if ch == 'Q' or ch == 'q':
-                #     return str(f'Выход из программы')
-                # else:
-                #     self.NewList.append(ch)
-                #     print(f'Список на данный момент:{self.NewList}')
-
-
+                    print(NumberTakeExeption(ch))
 
 try_ex = NumberTake()
 print(try_ex.operation())
-
-
-
-
